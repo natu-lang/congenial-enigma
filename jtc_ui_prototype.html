@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あなたの会社のJTC度診断 - UIモックアップ(修正版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        body {
+            /* 優しいベージュ・クリーム系の背景色 */
+            background-color: #F8F4EC;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #333333;
+        }
+
+        /* アクセントカラー（ティール/青緑系） */
+        .color-primary {
+            background-color: #3f9d86;
+        }
+
+        .color-primary-hover:hover {
+            background-color: #307a68;
+        }
+
+        .text-primary {
+            color: #3f9d86;
+        }
+
+        /* 柔らかいシャドウと角丸をもたせたカードデザイン */
+        .soft-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        /* ふんわりしたボタン */
+        .btn-soft {
+            transition: all 0.2s ease-in-out;
+            font-weight: 500;
+        }
+
+        .btn-soft:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-soft:active {
+            transform: translateY(0);
+        }
+
+        /* 質問やタイトルのフォント（少し丸みのある明朝体などでも可愛い） */
+        .title-font {
+            font-family: 'Kiwi Maru', serif;
+        }
+
+        /* 背景の有機的な波紋や図形（CSSで疑似的に表現） */
+        .bg-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen p-4 relative overflow-hidden">
+
+    <!-- 背景装飾 -->
+    <div class="bg-shape w-96 h-96 top-[-100px] left-[-100px]"></div>
+    <div class="bg-shape w-[500px] h-[500px] bottom-[-200px] right-[-100px]"
+        style="background: rgba(230, 220, 200, 0.5);"></div>
+
+    <!-- Screen Container (フロントのUI部分) -->
+    <div id="app-container" class="relative z-10 w-full max-w-md h-[800px] max-h-[90vh] soft-card flex flex-col">
+
+        <!-- ヘッダー（極めてシンプルに） -->
+        <header class="py-4 px-6 flex justify-between items-center bg-white border-b border-gray-100">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 rounded-full color-primary opacity-80 flex items-center justify-center">
+                    <span class="text-white text-xs font-bold leading-none">?</span>
+                </div>
+                <span class="text-sm font-bold text-gray-700 tracking-wide">JTC度診断</span>
+            </div>
+        </header>
+
+        <!-- コンテンツエリア -->
+        <main id="content-area"
+            class="flex-grow overflow-y-auto p-6 flex flex-col items-center justify-center relative bg-white">
+
+            <!-- START SCREEN -->
+            <div id="screen-start" class="w-full text-center space-y-10 py-8">
+                <div class="space-y-4">
+                    <p class="text-sm font-medium text-primary tracking-widest uppercase">あなたの会社は大丈夫？</p>
+                    <h1 class="text-3xl font-bold leading-relaxed title-font text-gray-800">
+                        あなたの会社の<br>
+                        <span class="text-4xl text-primary inline-block mt-2 font-black tracking-wider">JTC度</span><br>
+                        診断
+                    </h1>
+                </div>
+
+                <div class="bg-[#f0f5f4] rounded-xl p-5 text-gray-600 text-sm leading-loose">
+                    紙、ハンコ、謎の暗黙ルール...<br>
+                    あなたの会社はどれくらい「伝統的」？<br>
+                    15問の簡単な質問から、<br>客観的なJTC度を算出します。
+                </div>
+
+                <button onclick="showScreen('screen-question')"
+                    class="w-full color-primary color-primary-hover text-white py-4 rounded-full btn-soft text-lg shadow-md">
+                    診断をはじめる
+                </button>
+            </div>
+
+            <!-- QUESTION SCREEN -->
+            <div id="screen-question" class="w-full hidden space-y-8 flex-col h-full pt-4 pb-8">
+                <!-- プログレスバー（参考画像のような上部メーター） -->
+                <div class="w-full space-y-2">
+                    <div class="h-1.5 w-full bg-[#eef2f1] rounded-full overflow-hidden">
+                        <div class="color-primary h-full rounded-full" style="width: 6.6%"></div>
+                    </div>
+                    <div class="text-center text-xs font-medium text-gray-400 tracking-widest">
+                        質問 01/15
+                    </div>
+                </div>
+
+                <!-- 質問テキストエリア -->
+                <div class="flex-grow flex items-center justify-center rounded-2xl p-6 min-h-[160px]">
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-relaxed text-center title-font">
+                        資料の承認フローで、<br>ハンコ（電子含む）が3つ以上<br>必要になることがよくある。
+                    </h2>
+                </div>
+
+                <!-- 回答ボタン（横並びと縦並びを組み合わせてスッキリと） -->
+                <div class="space-y-4 w-full mt-auto">
+                    <div class="flex space-x-4">
+                        <button onclick="showScreen('screen-loading')"
+                            class="flex-1 color-primary color-primary-hover text-white font-medium py-3.5 rounded-xl btn-soft text-sm md:text-base">
+                            あてはまる
+                        </button>
+                        <button onclick="showScreen('screen-loading')"
+                            class="flex-1 bg-white border-2 border-[#3f9d86] text-primary hover:bg-[#f0f5f4] font-medium py-3.5 rounded-xl btn-soft text-sm md:text-base">
+                            あてはまらない
+                        </button>
+                    </div>
+                    <button onclick="showScreen('screen-loading')"
+                        class="w-full text-gray-400 hover:text-gray-600 font-medium py-2 text-sm transition">
+                        どちらともいえない
+                    </button>
+                </div>
+            </div>
+
+            <!-- LOADING SCREEN -->
+            <div id="screen-loading" class="w-full hidden flex-col items-center justify-center space-y-6 h-full">
+                <!-- シンプルなスピナー -->
+                <div class="w-12 h-12 border-4 border-[#eef2f1] border-t-[#3f9d86] rounded-full animate-spin"></div>
+                <p class="font-medium text-gray-500 tracking-wider">分析中...</p>
+            </div>
+
+            <!-- RESULT SCREEN -->
+            <div id="screen-result" class="w-full hidden space-y-8 py-6">
+                <div class="text-center space-y-4">
+                    <p class="text-xs font-bold text-gray-400 tracking-widest">診断結果</p>
+
+                    <div class="inline-block relative">
+                        <div class="text-[5rem] font-bold text-gray-800 leading-none title-font">95<span
+                                class="text-2xl text-gray-500 font-normal ml-1">%</span></div>
+                    </div>
+
+                    <h3 class="font-bold text-2xl text-primary title-font mt-2">
+                        シーラカンス級JTC
+                    </h3>
+                </div>
+
+                <div
+                    class="bg-[#fcfafd] rounded-2xl p-6 border border-[#f0ebf5] text-gray-600 text-sm leading-loose shadow-sm">
+                    あなたの会社は昭和で時が止まっています。圧倒的な年功序列や非効率な紙ルールなど、生きた化石レベルの伝統企業。「前例がない」の壁にぶつかりながら、息苦しさを感じていませんか？
+                </div>
+
+                <div class="space-y-3 pt-2">
+                    <button
+                        class="w-full bg-[#1DA1F2] hover:bg-[#1a91da] text-white font-medium py-3.5 rounded-xl btn-soft flex items-center justify-center space-x-2 shadow-sm">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                        </svg>
+                        <span>結果をXでシェア</span>
+                    </button>
+                    <button onclick="showScreen('screen-start')"
+                        class="w-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium py-3.5 rounded-xl btn-soft shadow-sm">
+                        最初からやり直す
+                    </button>
+                </div>
+
+                <!-- アフィリエイト枠 (より自然なデザインに溶け込ませる) -->
+                <div
+                    class="mt-6 border border-primary bg-[#f2f9f7] rounded-xl p-5 text-center cursor-pointer hover:bg-[#e6f4f1] transition group">
+                    <div class="text-xs font-bold text-primary mb-2 opacity-80">PR</div>
+                    <p class="font-bold text-gray-800 text-sm mb-1">新しい環境を探してみませんか？</p>
+                    <p class="text-xs text-gray-600 mb-3">若手向けのモダンな働き方ができる企業多数</p>
+                    <span
+                        class="inline-block bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-full group-hover:scale-105 transition-transform">
+                        おすすめの転職サイトを見る
+                    </span>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- フッター -->
+        <footer class="h-10 bg-white flex items-center justify-center text-[10px] text-gray-400">
+            © 2026 JTC Degree Diagnosis
+        </footer>
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            // Hide all screens
+            ['screen-start', 'screen-question', 'screen-loading', 'screen-result'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+                document.getElementById(id).style.display = 'none';
+            });
+
+            // Show target screen
+            if (screenId === 'screen-question' || screenId === 'screen-loading') {
+                document.getElementById(screenId).classList.remove('hidden');
+                document.getElementById(screenId).style.display = 'flex';
+            } else {
+                document.getElementById(screenId).classList.remove('hidden');
+                document.getElementById(screenId).style.display = 'block';
+            }
+
+            if (screenId === 'screen-loading') {
+                setTimeout(() => {
+                    showScreen('screen-result');
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+
+</html>
