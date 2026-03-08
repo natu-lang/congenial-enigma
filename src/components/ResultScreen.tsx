@@ -15,7 +15,7 @@ export const ResultScreen: React.FC<Props> = ({ score, maxScore, onRestart }) =>
     ) || results[0]; // Fallback to the first one just in case
 
     const shareText = `私の会社のJTC度は【${percentage}%：${resultData.title}】でした\n\nあなたの会社はどれくらい「伝統的」？\n#JTC度診断 #脱JTC`;
-    const shareUrl = "https://example.com"; // TODO: Replace with actual URL when deployed
+    const shareUrl = "https://jtc-shindan.vercel.app";
 
     const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 
