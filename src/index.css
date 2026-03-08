@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+@layer base {
+  body {
+    background-color: theme('colors.background');
+    color: #333333;
+    font-family: theme('fontFamily.sans');
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .soft-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+  }
+
+  .btn-soft {
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+  }
+  .btn-soft:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  .btn-soft:active {
+    transform: translateY(0);
+  }
+
+  .bg-shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+  }
+}
