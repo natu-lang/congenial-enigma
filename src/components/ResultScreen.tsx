@@ -60,13 +60,14 @@ export const ResultScreen: React.FC<Props> = ({ score, maxScore, onRestart }) =>
             </div>
 
             {/* Affiliate Banner Placeholder */}
-            <a href="#" className="block mt-6 border border-primary bg-[#f2f9f7] rounded-xl p-5 text-center cursor-pointer hover:bg-[#e6f4f1] transition group no-underline">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4AZBO2+C08PYQ+5BJK+60H7L" rel="nofollow noopener noreferrer" target="_blank" className="block mt-6 border border-primary bg-[#f2f9f7] rounded-xl p-5 text-center cursor-pointer hover:bg-[#e6f4f1] transition group no-underline">
                 <div className="text-xs font-bold text-primary mb-2 opacity-80">PR</div>
                 <p className="font-bold text-gray-800 text-sm mb-1">新しい環境を探してみませんか？</p>
                 <p className="text-xs text-gray-600 mb-3">若手向けのモダンな働き方ができる企業多数</p>
                 <span className="inline-block bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-full group-hover:scale-105 transition-transform">
                     おすすめの転職サイトを見る
                 </span>
+                <img width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AZBO2+C08PYQ+5BJK+60H7L" alt="" />
             </a>
         </div>
     );
